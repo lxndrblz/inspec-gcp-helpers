@@ -1,4 +1,4 @@
-# InSpec GCP Helpers Resource Pack
+# InSpec GCP Helper Resource Pack
 
 Resource pack containing helper functions and classes for Inspec-gcp profiles.
 
