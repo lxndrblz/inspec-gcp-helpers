@@ -15,7 +15,7 @@
 timeout: 300s
 steps:
 - id: 'Rubocop'
-  name: ruby:2.7.1
+  name: ruby:3.1.6p260
   entrypoint: '/bin/sh'
   args: 
     - '-c'

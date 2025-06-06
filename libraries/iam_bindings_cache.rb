@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,9 +29,9 @@ class IAMBindingsCache < GCPBaseCache
   @@iam_bindings_cache_set = false
   @@iam_binding_roles_cache_set = false
 
-  def initialize(project: '')
-    super()
-    @gcp_project_id = project
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class
+    @gcp_project_id = params[:project] # Extract the project from the params hash
   end
 
   def iam_binding_roles

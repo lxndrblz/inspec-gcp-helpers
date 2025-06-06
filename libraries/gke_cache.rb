@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,13 +28,15 @@ class GKECache < GCPBaseCache
   @@cached_gke_clusters = []
   @@gke_clusters_cached = false
 
-  def initialize(project: '', gke_locations: [])
-    super()
-    @gcp_project_id = project
-    @gke_locations = if gke_locations.join.empty?
-                       all_gcp_locations
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class (GCPBaseCache)
+    # @gcp_project_id is now set by the superclass from params[:project]
+
+    # Extract gke_locations from params and handle default
+    @gke_locations = if params[:gke_locations] && !params[:gke_locations].empty?
+                       params[:gke_locations]
                      else
-                       gke_locations
+                       all_gcp_locations # This method is defined in GCPBaseCache
                      end
   end
 

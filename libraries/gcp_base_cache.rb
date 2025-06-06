@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,9 +24,9 @@ class GCPBaseCache < Inspec.resource(1)
        https://github.com/GoogleCloudPlatform/inspec-gcp-cis-benchmark'
   attr_reader :gke_locations
 
-  def initialize(project: '')
+  def initialize(params = {})
     super()
-    @gcp_project_id = project
+    @gcp_project_id = params[:project] # Extract the project from the params hash
     @gke_locations = []
   end
 

@@ -1,4 +1,4 @@
-# InSpec GCP Helpers Resource Pack
+# InSpec GCP Helper Resource Pack
 
 Resource pack containing helper functions and classes for Inspec-gcp profiles.
 
@@ -8,9 +8,9 @@ This is not an officially supported Google product. This code is intended to hel
 
 ### Create a profile 
 
-For example, using InSpec e.g.
+For example, using InSpec
 
-```
+```sh
 inspec init profile myprofile --platform gcp
 ```
 
@@ -18,17 +18,17 @@ inspec init profile myprofile --platform gcp
 
 This should be updated to point here instead of directly to the InSpec GCP resource pack:
 
-```
+```yaml
 depends:
 - name: inspec-gcp-helpers
-  url: https://github.com/GoogleCloudPlatform/inspec-gcp-helpers/archive/master.tar.gz
+  url: https://github.com/lxndrblz/inspec-gcp-helpers/archive/master.tar.gz
 ```
 
 ### Use the helper functions
 
-Now we could edit the controls to include lines such as:
+Now we can edit the controls to include lines such as:
 
-```
+```rb
 gcp_project_id = attribute('gcp_project_id')
 
 gke_cache = GKECache(project: gcp_project_id, gke_locations: ['us-central1-a'])
@@ -39,7 +39,3 @@ p gce_cache.gce_instances_cache
 ```
 
 and directly use these methods in downstream profiles. 
-
-### Other notes
-
-This approach and much of the code in the helper resource originated because of the PR here: https://github.com/inspec/inspec-gcp/pull/245/files and the issue of helper modules with InSpec discussed https://github.com/inspec/inspec/issues/4948.  
