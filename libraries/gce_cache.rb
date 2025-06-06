@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,14 +28,16 @@ class GCECache < GCPBaseCache
   @@cached_gce_instances = []
   @@gce_instances_cached = false
 
-  def initialize(project: '', gce_zones: [])
-    super()
-    @gcp_project_id = project
-    @gce_zones = if gce_zones.join.empty?
-                   inspec.google_compute_zones(project: @gcp_project_id)
-                         .zone_names
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class (GCPBaseCache)
+    # @gcp_project_id is now set by the superclass from params[:project]
+
+    # Extract gce_zones from params and handle default
+    @gce_zones = if params[:gce_zones] && !params[:gce_zones].empty?
+                   params[:gce_zones]
                  else
-                   gce_zones
+                   # Since @gcp_project_id is set by super(params), we can use it here.
+                   inspec.google_compute_zones(project: @gcp_project_id).zone_names
                  end
   end
 

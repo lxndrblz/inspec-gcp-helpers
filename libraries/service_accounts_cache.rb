@@ -28,9 +28,9 @@ class ServiceAccountCache < GCPBaseCache
   @@sa_email_cache_set = false
   @@sa_keys_cache_set = false
 
-  def initialize(project: '')
-    super()
-    @gcp_project_id = project
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class
+    @gcp_project_id = params[:project] # Extract the project from the params hash
   end
 
   def service_account_emails

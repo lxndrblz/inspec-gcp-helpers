@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,10 +31,10 @@ class KMSKeyCache < GCPBaseCache
   @@kms_crypto_key_cache_set = false
   @kms_locations = []
 
-  def initialize(project: '', locations: [])
-    super()
-    @gcp_project_id = project
-    @kms_locations = locations
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class
+    @gcp_project_id = params[:project] # Extract the project from the params hash
+    @kms_locations = params[:locations] # Extract the locations from the params hash
   end
 
   def kms_key_ring_names

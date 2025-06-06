@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +25,7 @@ class GCPBaseCache < Inspec.resource(1)
   attr_reader :gke_locations
 
   def initialize(params = {})
-    super(params) # Pass all parameters to the parent class
+    super()
     @gcp_project_id = params[:project] # Extract the project from the params hash
     @gke_locations = []
   end
