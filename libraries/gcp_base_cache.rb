@@ -23,9 +23,9 @@ class GCPBaseCache < Inspec.resource(1)
        https://github.com/GoogleCloudPlatform/inspec-gcp-cis-benchmark'
   attr_reader :gke_locations
 
-  def initialize(project: '')
-    super()
-    @gcp_project_id = project
+  def initialize(params = {})
+    super(params) # Pass all parameters to the parent class
+    @gcp_project_id = params[:project] # Extract the project from the params hash
     @gke_locations = []
   end
 
