@@ -57,7 +57,7 @@ class CloudSQLCache < GCPBaseCache
       @@cached_sql_instance_names.push(instance_name)
       @@cached_sql_instance_objects[instance_name] = inspec
                                                      .google_sql_database_instance(project: @gcp_project_id,
-                                                                                   database: instance_name)
+                                                                                   instance: instance_name)
     end
     @@cache_set = true
   end
